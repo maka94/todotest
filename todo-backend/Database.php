@@ -4,7 +4,7 @@ class Database
     private $hostname = "localhost";
     private $username = "root";
     private $password = "";
-    private $dbname;
+    private $dbname = "todo";
     private $dblink; // veza sa bazom
     private $result; // Holds the MySQL query result
     private $records; // Holds the total number of records returned

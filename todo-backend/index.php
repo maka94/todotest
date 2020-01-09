@@ -99,6 +99,7 @@ Flight::route('GET /liste.json', function(){
 	//Na primer, slovo č će biti \u010
 	$json_niz = json_encode ($niz,JSON_UNESCAPED_UNICODE);
 	echo indent($json_niz);
+
 	return false;
 });
 Flight::route('GET /liste/@id.json', function($id){
