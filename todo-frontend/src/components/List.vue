@@ -45,9 +45,9 @@ export default {
   methods: {
     
     async updateUi() {
-      const response = await this.$http.get(
-        `${this.$store.state.baseUrl}/liste.json`
-      );
+      var url = `${this.$store.state.baseUrl}/liste.json`;
+      console.log(url);
+      const response = await this.$http.get(url);
       this.lists = response.data;
     },
     async deleteList(list) {
