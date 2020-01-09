@@ -15,6 +15,9 @@
         :style="(item.status == '0')?'textDecoration: none;':'textDecoration: line-through'"
       >{{id + 1}}. {{item.content}}</div>
       <div>
+
+        <Dropdown type="item" id="change-item" @changeItem="changeItem(item, ...arguments)" 
+          label="Content"/>
        
         <b-badge @click.stop="deleteItem(item)" href="#" variant="danger" pill>X</b-badge>
       </div>
@@ -31,8 +34,11 @@
 </template>
 
 <script>
+import Dropdown from "@/components/Dropdown.vue";
 export default {
-  
+  components: {
+    Dropdown
+  },
   props: {
     list: {
       type: Object
@@ -45,6 +51,15 @@ export default {
     };
   },
   methods: {
+    async changeItem(item, content){
+      const reqBody = {
+        content: content,
+        status: item.status,
+        list_id: item.list_id
+      };
+      await this.$http.put(`${this.$store.state.baseUrl}/itemi/${item.id}`, reqBody);
+      this.$emit("update-lists");
+    },
     async deleteItem(item) {
       await this.$http.delete(`${this.$store.state.baseUrl}/itemi/${item.id}`);
      
